@@ -1,0 +1,10 @@
+{
+  "rust-analyzer.linkedProjects": [
+    ".\\Cargo.toml",
+    ".\\Cargo.toml",
+    ".\\Cargo.toml",
+    ".\\Cargo.toml",
+    ".\\Cargo.toml"
+  ],
+  "ansible.python.interpreterPath": "d:\\ProgramFiles\\Python3\\python.exe"
+}
