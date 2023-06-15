@@ -20,8 +20,5 @@ jobs:
       - name: Build Cache Server
         run: cargo build --verbose --bin cache-server
 
-      - name: Build Cache Client
-        run: cargo build --verbose --bin cache-server-client
-
       - name: Build Cache Server Cli
         run: cargo build --verbose --bin cache-server-cli
