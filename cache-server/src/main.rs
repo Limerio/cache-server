@@ -1,11 +1,26 @@
-use cache_server::{server, Db};
+mod db;
+mod server;
+
+use clap::{Arg, Command};
+use db::Db;
 use tokio::net::TcpListener;
+
+fn cli() -> Command {
+    Command::new("cache-server").bin_name("cache-server").arg(
+        Arg::new("port")
+            .short('p')
+            .long("port")
+            .default_value("8080"),
+    )
+}
 
 #[tokio::main]
 async fn main() {
+    let matches = cli().get_matches();
     let db = Db::new();
+    let port = matches.get_one::<String>("port").unwrap();
 
-    let listener = TcpListener::bind("0.0.0.0:8080")
+    let listener = TcpListener::bind(format!("0.0.0.0:{}", port))
         .await
         .expect("Unable to start the server");
 

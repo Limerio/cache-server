@@ -2,9 +2,9 @@ name: Cache Server
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 env:
   CARGO_TERM_COLOR: always
@@ -14,6 +14,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Build
-      run: cargo build --verbose
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build Cache Server
+        run: cargo build --verbose --bin cache-server
+
+      - name: Build Cache Client
+        run: cargo build --verbose --bin cache-server-client
+
+      - name: Build Cache Server Cli
+        run: cargo build --verbose --bin cache-server-cli

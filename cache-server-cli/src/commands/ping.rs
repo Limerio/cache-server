@@ -1,7 +1,5 @@
+use cache_server_client::Connection;
 use clap::{Arg, ArgMatches, Command};
-use tokio::{io::AsyncWriteExt, net::TcpStream};
-
-use crate::get_response;
 
 pub fn cmd() -> Command {
     Command::new("ping")
@@ -12,28 +10,28 @@ pub fn cmd() -> Command {
                 .short('t')
                 .action(clap::ArgAction::SetTrue),
         )
+        .arg(Arg::new("port").long("port").default_value("8080"))
 }
 
 pub async fn subcommand(sub_matches: &ArgMatches) {
     let infinite = sub_matches.get_one::<bool>("infinite");
+    let port = sub_matches.get_one::<String>("port").unwrap();
 
-    let mut listener = TcpStream::connect("127.0.0.1:8080")
-        .await
-        .expect("Unable to connect to the database");
+    let mut listener = Connection::new(port.to_string()).await;
 
     match infinite {
-        Some(false) => ping(&mut listener).await,
+        Some(false) => ping_write(&mut listener).await,
         Some(true) => loop {
-            ping(&mut listener).await
+            ping_write(&mut listener).await
         },
         None => unreachable!("Strange thing"),
     }
 }
 
-async fn ping(listener: &mut TcpStream) {
-    listener.write_all("PING".as_bytes()).await.unwrap();
+async fn ping_write(listener: &mut Connection) {
+    listener.write("PING".to_string()).await;
 
-    let response = get_response(listener).await;
+    let response = listener.read().await;
 
-    println!("{}", response);
+    println!("{}", response)
 }

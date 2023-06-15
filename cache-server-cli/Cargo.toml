@@ -1,0 +1,9 @@
+[package]
+name = "cache-server-cli"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1.28.2", features = ["full"] }
+clap = "4.3.2"
+cache-server-client = { path = "../cache-server-client" }

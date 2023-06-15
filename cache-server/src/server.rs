@@ -44,7 +44,7 @@ pub async fn handle_connection(stream: &mut TcpStream, db: &mut Db) -> io::Resul
                     let key = String::from(filtered_parts[1]);
 
                     stream
-                        .write_all(format!("{:?}\r\n", db.get(key)).as_bytes())
+                        .write_all(format!("{:}\r\n", db.get(key)).as_bytes())
                         .await?;
                 } else {
                     stream
@@ -53,6 +53,19 @@ pub async fn handle_connection(stream: &mut TcpStream, db: &mut Db) -> io::Resul
                     continue;
                 }
             }
+            "DEL" => {
+                if filtered_parts.len() >= 2 {
+                    let key = String::from(filtered_parts[1]);
+                    db.del(key);
+                    stream.write_all("OK\r\n".as_bytes()).await?;
+                } else {
+                    stream
+                        .write_all("INVALID COMMAND DEL\r\n".as_bytes())
+                        .await?;
+                    continue;
+                }
+            }
+            "ALL" => stream.write_all(db.all().as_bytes()).await?,
             "PING" => {
                 stream.write_all("PONG".as_bytes()).await?;
             }

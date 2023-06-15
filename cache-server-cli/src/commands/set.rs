@@ -1,7 +1,4 @@
 use clap::{Arg, ArgMatches, Command};
-use tokio::{io::AsyncWriteExt, net::TcpStream};
-
-use crate::get_response;
 
 pub fn cmd() -> Command {
     Command::new("set")
@@ -9,6 +6,7 @@ pub fn cmd() -> Command {
         .about("Add data in the database")
         .arg(Arg::new("key").required(true))
         .arg(Arg::new("value").required(true))
+        .arg(Arg::new("port").long("port").default_value("8080"))
 }
 
 pub async fn subcommand(sub_matches: &ArgMatches) {
@@ -18,17 +16,10 @@ pub async fn subcommand(sub_matches: &ArgMatches) {
     let value = sub_matches
         .get_one::<String>("value")
         .expect("Cannot get the parameter \"value\"");
+    let port = sub_matches.get_one::<String>("port").unwrap();
 
-    let mut listener = TcpStream::connect("127.0.0.1:8080")
-        .await
-        .expect("Unable to connect to the database");
-
-    listener
-        .write_all(format!("SET {} {}", key, value).as_bytes())
-        .await
-        .unwrap();
-
-    let response = get_response(&mut listener).await;
+    let response =
+        cache_server_client::set(port.to_string(), key.to_string(), value.to_string()).await;
 
     println!("{}", response);
 }
