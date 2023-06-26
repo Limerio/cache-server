@@ -13,4 +13,8 @@ pub fn cmds() -> Command {
         .subcommand(commands::del::cmd())
         .subcommand(commands::ping::cmd())
         .subcommand(commands::all::cmd())
+        .subcommand(commands::count::cmd())
+        .subcommand(commands::exists::cmd())
+        .subcommand(commands::flush::cmd())
+        .subcommand(commands::rename::cmd())
 }

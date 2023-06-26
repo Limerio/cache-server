@@ -1,5 +1,9 @@
 pub mod all;
+pub mod count;
 pub mod del;
+pub mod exists;
+pub mod flush;
 pub mod get;
 pub mod ping;
+pub mod rename;
 pub mod set;

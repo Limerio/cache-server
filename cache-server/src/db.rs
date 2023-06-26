@@ -57,4 +57,30 @@ impl Db {
 
         serde_json::to_string(&key_values).unwrap()
     }
+
+    pub fn count(&mut self) -> usize {
+        let map = self.data.lock().unwrap();
+
+        map.len()
+    }
+
+    pub fn exists(&mut self, key: String) -> bool {
+        let map = self.data.lock().unwrap();
+
+        map.get(&key).is_some()
+    }
+
+    pub fn flush(&mut self) {
+        let mut map = self.data.lock().unwrap();
+
+        map.clear();
+    }
+
+    pub fn rename(&mut self, old_key: String, new_key: String) {
+        let renamed_value = self.get(old_key.clone());
+
+        self.del(old_key);
+
+        self.set(new_key, Bytes::from(renamed_value))
+    }
 }

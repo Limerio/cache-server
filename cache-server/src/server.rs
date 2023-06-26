@@ -65,7 +65,39 @@ pub async fn handle_connection(stream: &mut TcpStream, db: &mut Db) -> io::Resul
                     continue;
                 }
             }
+            "FLUSH" => {
+                db.flush();
+                stream.write_all("OK\r\n".as_bytes()).await?;
+            }
             "ALL" => stream.write_all(db.all().as_bytes()).await?,
+            "COUNT" => stream.write_all(db.count().to_string().as_bytes()).await?,
+            "EXISTS" => {
+                if filtered_parts.len() >= 2 {
+                    let key = String::from(filtered_parts[1]);
+
+                    stream
+                        .write_all(db.exists(key).to_string().as_bytes())
+                        .await?
+                } else {
+                    stream
+                        .write_all("INVALID COMMAND EXISTS\r\n".as_bytes())
+                        .await?;
+                    continue;
+                }
+            }
+            "RENAME" => {
+                if filtered_parts.len() >= 3 {
+                    let old_key = filtered_parts[1].to_owned();
+                    let new_key = filtered_parts[2].to_owned();
+                    db.rename(old_key, new_key);
+                    stream.write_all("OK\r\n".as_bytes()).await?;
+                } else {
+                    stream
+                        .write_all("INVALID COMMAND SET\r\n".as_bytes())
+                        .await?;
+                    continue;
+                }
+            }
             "PING" => {
                 stream.write_all("PONG".as_bytes()).await?;
             }
