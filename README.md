@@ -12,31 +12,38 @@ I have already make projects in rust like a [file hasher](https://github.com/Lim
 This project contains or will contain :
 
 - [ ] Server
-  - [x] Cli
+  - [ ] Cli
     - [x] port definition (default: 8080)
     - [ ] password authentification
-    - [ ] Config file (yaml, yml, json, conf)
+    - [x] Config file (yaml, yml, json, toml)
   - [x] SET
   - [x] GET
   - [x] DEL
   - [x] ALL
-  - [ ] COUNT
-  - [ ] EXISTS
-  - [ ] RENAME
-  - [ ] FLUSH
+  - [x] COUNT
+  - [x] EXISTS
+  - [x] RENAME
+  - [x] FLUSH
   - [x] PING
 - [ ] Client
   - [ ] API
-    - [ ] SET
-    - [ ] GET
-    - [ ] DEL
-    - [ ] ALL
-    - [ ] COUNT
-    - [ ] EXISTS
-    - [ ] RENAME
-    - [ ] FLUSH
-    - [ ] PING
-      - [ ] one time
+    - [ ] Cli
+      - [x] API
+        - [x] port definition (default: 8000)
+      - [ ] DB
+        - [x] port definition (default: 8080)
+        - [ ] password authentification
+      - [x] Config file for all (yaml, yml, json, toml)
+    - [x] SET
+    - [x] GET
+    - [x] DEL
+    - [x] ALL
+    - [x] COUNT
+    - [x] EXISTS
+    - [x] RENAME
+    - [x] FLUSH
+    - [x] PING
+      - [x] one time
   - [ ] APP
     - [ ] SET
     - [ ] GET
@@ -45,18 +52,18 @@ This project contains or will contain :
     - [ ] RENAME
     - [ ] FLUSH
     - [ ] ALL
-  - [x] Cli
+  - [ ] Cli
     - [x] port definition (default: 8080)
     - [ ] password authentification
-    - [ ] Config file (yaml, yml, json, conf)
+    - [ ] Config file (yaml, yml, json, toml)
     - [x] SET
     - [x] GET
     - [x] DEL
     - [x] ALL
-    - [ ] COUNT
-    - [ ] RENAME
-    - [ ] EXISTS
-    - [ ] FLUSH
+    - [x] COUNT
+    - [x] RENAME
+    - [x] EXISTS
+    - [x] FLUSH
     - [x] PING
       - [x] infinite
         - [ ] with interval
@@ -67,12 +74,12 @@ This project contains or will contain :
     - [x] GET
     - [x] DEL
     - [x] ALL
-    - [ ] COUNT
-    - [ ] EXISTS
-    - [ ] RENAME
-    - [ ] FLUSH
+    - [x] COUNT
+    - [x] EXISTS
+    - [x] RENAME
+    - [x] FLUSH
     - [ ] PING
       - [ ] infinite
         - [ ] with interval
         - [ ] without interval
-      - [ ] one time
+      - [x] one time

@@ -1,2 +1,7 @@
 [workspace]
-members = ["cache-server", "cache-server-cli", "cache-server-client"]
+members = [
+  "cache-server",
+  "cache-server-cli",
+  "cache-server-client",
+  "cache-server-api",
+]
