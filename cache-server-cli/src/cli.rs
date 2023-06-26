@@ -1,4 +1,4 @@
-use clap::Command;
+use clap::{Arg, Command};
 
 use crate::commands;
 
@@ -17,4 +17,5 @@ pub fn cmds() -> Command {
         .subcommand(commands::exists::cmd())
         .subcommand(commands::flush::cmd())
         .subcommand(commands::rename::cmd())
+        .arg(Arg::new("port").long("port").default_value("8080"))
 }

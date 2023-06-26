@@ -10,12 +10,12 @@ pub fn cmd() -> Command {
                 .short('t')
                 .action(clap::ArgAction::SetTrue),
         )
-        .arg(Arg::new("port").long("port").default_value("8080"))
 }
 
-pub async fn subcommand(sub_matches: &ArgMatches) {
+pub async fn subcommand(matches: ArgMatches) {
+    let sub_matches = matches.subcommand_matches(cmd().get_name()).unwrap();
     let infinite = sub_matches.get_one::<bool>("infinite");
-    let port = sub_matches.get_one::<String>("port").unwrap();
+    let port = matches.get_one::<String>("port").unwrap();
 
     let mut listener = Connection::new(port.to_string()).await;
 
