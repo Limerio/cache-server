@@ -13,7 +13,7 @@ pub fn init() -> Command {
         .arg(Arg::new("config").short('c').long("config").required(false))
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Deserialize)]
 pub struct Config {
     pub port: String,
 }

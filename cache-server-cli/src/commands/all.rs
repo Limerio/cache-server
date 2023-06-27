@@ -1,4 +1,5 @@
-use clap::{ArgMatches, Command};
+use cache_server_shared::Connection;
+use clap::Command;
 
 pub fn cmd() -> Command {
     Command::new("all")
@@ -6,10 +7,8 @@ pub fn cmd() -> Command {
         .about("Get all data in the database")
 }
 
-pub async fn subcommand(matches: ArgMatches) {
-    let port = matches.get_one::<String>("port").unwrap();
-
-    let response = cache_server_client::all(port.to_string()).await;
+pub async fn subcommand(mut connection: Connection) {
+    let response = connection.all().await;
 
     println!("{}", response);
 }

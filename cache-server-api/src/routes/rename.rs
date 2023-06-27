@@ -1,3 +1,4 @@
+use cache_server_shared::Connection;
 use rocket::serde::{json::Json, Deserialize};
 
 #[derive(Deserialize)]
@@ -8,10 +9,7 @@ pub struct NewKey {
 
 #[put("/<key>/rename", data = "<data>")]
 pub async fn route(key: String, data: Json<NewKey>) -> String {
-    cache_server_client::rename(
-        std::env::var("SERVER_PORT").unwrap(),
-        key,
-        data.new_key.clone(),
-    )
-    .await
+    let mut connection = Connection::new(std::env::var("SERVER_PORT").unwrap()).await;
+
+    connection.rename(key, data.new_key.to_string()).await
 }

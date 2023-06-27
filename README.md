@@ -69,7 +69,7 @@ This project contains or will contain :
         - [ ] with interval
         - [x] without interval
       - [x] one time
-  - [ ] Lib
+  - [ ] Shared
     - [x] SET
     - [x] GET
     - [x] DEL

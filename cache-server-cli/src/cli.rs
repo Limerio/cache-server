@@ -1,4 +1,5 @@
 use clap::{Arg, Command};
+use serde::Deserialize;
 
 use crate::commands;
 
@@ -18,4 +19,9 @@ pub fn cmds() -> Command {
         .subcommand(commands::flush::cmd())
         .subcommand(commands::rename::cmd())
         .arg(Arg::new("port").long("port").default_value("8080"))
+}
+
+#[derive(Deserialize)]
+pub struct Config {
+    pub port: String,
 }

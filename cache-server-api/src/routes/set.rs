@@ -1,3 +1,4 @@
+use cache_server_shared::Connection;
 use rocket::serde::{json::Json, Deserialize};
 
 #[derive(Deserialize)]
@@ -9,10 +10,9 @@ pub struct KeyValue {
 
 #[post("/", data = "<data>")]
 pub async fn route(data: Json<KeyValue>) -> String {
-    cache_server_client::set(
-        std::env::var("SERVER_PORT").unwrap(),
-        data.key.to_string(),
-        data.value.to_string(),
-    )
-    .await
+    let mut connection = Connection::new(std::env::var("SERVER_PORT").unwrap()).await;
+
+    connection
+        .set(data.key.to_string(), data.value.to_string())
+        .await
 }

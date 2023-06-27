@@ -1,3 +1,5 @@
+use cache_server_shared::Connection;
+
 #[macro_use]
 extern crate rocket;
 
@@ -22,7 +24,9 @@ async fn rocket() -> _ {
         },
     );
 
-    cache_server_client::ping(config.db.port.to_string()).await;
+    let mut connection = Connection::new(config.db.port.clone()).await;
+
+    connection.ping().await;
 
     std::env::set_var("SERVER_PORT", config.db.port);
     std::env::set_var("ROCKET_PORT", config.port);

@@ -8,6 +8,5 @@ edition = "2021"
 [dependencies]
 rocket = { version = "=0.5.0-rc.3", features = ["json"] }
 clap = "4.3.2"
-cache-server-client = { path = "../cache-server-client" }
 serde = { version = "1.0.164", features = ["derive"] }
 cache-server-shared = { path = "../cache-server-shared" }

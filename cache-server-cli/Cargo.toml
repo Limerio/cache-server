@@ -6,4 +6,5 @@ edition = "2021"
 [dependencies]
 tokio = { version = "1.28.2", features = ["full"] }
 clap = "4.3.2"
-cache-server-client = { path = "../cache-server-client" }
+serde = { version = "1.0.164", features = ["derive"] }
+cache-server-shared = { path = "../cache-server-shared" }

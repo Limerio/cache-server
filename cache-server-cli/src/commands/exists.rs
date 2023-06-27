@@ -1,3 +1,4 @@
+use cache_server_shared::Connection;
 use clap::{Arg, ArgMatches, Command};
 
 pub fn cmd() -> Command {
@@ -7,15 +8,12 @@ pub fn cmd() -> Command {
         .arg(Arg::new("key").required(true))
 }
 
-pub async fn subcommand(matches: ArgMatches) {
-    let sub_matches = matches.subcommand_matches(cmd().get_name()).unwrap();
-
+pub async fn subcommand(mut connection: Connection, sub_matches: &ArgMatches) {
     let key = sub_matches
         .get_one::<String>("key")
         .expect("Cannot get the parameter \"key\"");
-    let port = matches.get_one::<String>("port").unwrap();
 
-    let response = cache_server_client::exists(port.to_string(), key.to_string()).await;
+    let response = connection.exists(key.to_string()).await;
 
     println!("{}", response);
 }

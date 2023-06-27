@@ -1,4 +1,4 @@
-use cache_server_client::Connection;
+use cache_server_shared::Connection;
 use clap::{Arg, ArgMatches, Command};
 
 pub fn cmd() -> Command {
@@ -12,26 +12,22 @@ pub fn cmd() -> Command {
         )
 }
 
-pub async fn subcommand(matches: ArgMatches) {
-    let sub_matches = matches.subcommand_matches(cmd().get_name()).unwrap();
+pub async fn subcommand(mut connection: Connection, sub_matches: &ArgMatches) {
     let infinite = sub_matches.get_one::<bool>("infinite");
-    let port = matches.get_one::<String>("port").unwrap();
-
-    let mut listener = Connection::new(port.to_string()).await;
 
     match infinite {
-        Some(false) => ping_write(&mut listener).await,
+        Some(false) => ping_write(&mut connection).await,
         Some(true) => loop {
-            ping_write(&mut listener).await
+            ping_write(&mut connection).await
         },
         None => unreachable!("Strange thing"),
     }
 }
 
-async fn ping_write(listener: &mut Connection) {
-    listener.write("PING".to_string()).await;
+async fn ping_write(connection: &mut Connection) {
+    connection.write("PING".to_string()).await;
 
-    let response = listener.read().await;
+    let response = connection.read().await;
 
     println!("{}", response)
 }

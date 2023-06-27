@@ -136,7 +136,6 @@ dependencies = [
 name = "cache-server-api"
 version = "0.1.0"
 dependencies = [
- "cache-server-client",
  "cache-server-shared",
  "clap",
  "rocket",
@@ -147,15 +146,9 @@ dependencies = [
 name = "cache-server-cli"
 version = "0.1.0"
 dependencies = [
- "cache-server-client",
+ "cache-server-shared",
  "clap",
- "tokio",
-]
-
-[[package]]
-name = "cache-server-client"
-version = "0.1.0"
-dependencies = [
+ "serde",
  "tokio",
 ]
 
@@ -167,6 +160,7 @@ dependencies = [
  "serde",
  "serde_json",
  "serde_yaml",
+ "tokio",
  "toml",
 ]
 
