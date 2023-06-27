@@ -16,18 +16,10 @@ pub async fn subcommand(mut connection: Connection, sub_matches: &ArgMatches) {
     let infinite = sub_matches.get_one::<bool>("infinite");
 
     match infinite {
-        Some(false) => ping_write(&mut connection).await,
+        Some(false) => println!("{}", connection.ping().await),
         Some(true) => loop {
-            ping_write(&mut connection).await
+            println!("{}", connection.ping().await)
         },
         None => unreachable!("Strange thing"),
     }
-}
-
-async fn ping_write(connection: &mut Connection) {
-    connection.write("PING".to_string()).await;
-
-    let response = connection.read().await;
-
-    println!("{}", response)
 }

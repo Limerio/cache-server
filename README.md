@@ -43,7 +43,6 @@ This project contains or will contain :
     - [x] RENAME
     - [x] FLUSH
     - [x] PING
-      - [x] one time
   - [ ] APP
     - [ ] SET
     - [ ] GET
@@ -69,7 +68,7 @@ This project contains or will contain :
         - [ ] with interval
         - [x] without interval
       - [x] one time
-  - [ ] Shared
+  - [x] Shared
     - [x] SET
     - [x] GET
     - [x] DEL
@@ -78,8 +77,4 @@ This project contains or will contain :
     - [x] EXISTS
     - [x] RENAME
     - [x] FLUSH
-    - [ ] PING
-      - [ ] infinite
-        - [ ] with interval
-        - [ ] without interval
-      - [x] one time
+    - [x] PING
