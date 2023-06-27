@@ -54,7 +54,7 @@ This project contains or will contain :
   - [ ] Cli
     - [x] port definition (default: 8080)
     - [ ] password authentification
-    - [ ] Config file (yaml, yml, json, toml)
+    - [x] Config file (yaml, yml, json, toml)
     - [x] SET
     - [x] GET
     - [x] DEL
@@ -65,7 +65,7 @@ This project contains or will contain :
     - [x] FLUSH
     - [x] PING
       - [x] infinite
-        - [ ] with interval
+        - [x] with interval
         - [x] without interval
       - [x] one time
   - [x] Shared
