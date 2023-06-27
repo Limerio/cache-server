@@ -3,7 +3,6 @@ use clap::{Arg, ArgMatches, Command};
 
 pub fn cmd() -> Command {
     Command::new("exists")
-        .short_flag('e')
         .about("Check if a key exists in the database")
         .arg(Arg::new("key").required(true))
 }

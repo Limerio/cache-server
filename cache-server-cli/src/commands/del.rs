@@ -4,7 +4,6 @@ use cache_server_shared::Connection;
 
 pub fn cmd() -> Command {
     Command::new("del")
-        .short_flag('d')
         .about("Delete data in the database")
         .arg(Arg::new("key").required(true))
 }

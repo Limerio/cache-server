@@ -3,7 +3,6 @@ use clap::{Arg, ArgMatches, Command};
 
 pub fn cmd() -> Command {
     Command::new("rename")
-        .short_flag('r')
         .about("Add data in the database")
         .arg(Arg::new("old_key").required(true))
         .arg(Arg::new("new_key").required(true))

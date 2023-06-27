@@ -3,7 +3,6 @@ use clap::{Arg, ArgMatches, Command};
 
 pub fn cmd() -> Command {
     Command::new("get")
-        .short_flag('g')
         .about("Get data in the database")
         .arg(Arg::new("key").required(true))
 }

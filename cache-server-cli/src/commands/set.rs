@@ -3,7 +3,6 @@ use clap::{Arg, ArgMatches, Command};
 
 pub fn cmd() -> Command {
     Command::new("set")
-        .short_flag('s')
         .about("Add data in the database")
         .arg(Arg::new("key").required(true))
         .arg(Arg::new("value").required(true))
