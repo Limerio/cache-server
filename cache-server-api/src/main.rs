@@ -10,7 +10,17 @@ async fn rocket() -> _ {
 
     let config = matches.get_one::<String>("config");
 
-    let config = cli::format_config(config, matches.clone());
+    let db = cli::DBConfig {
+        port: matches.get_one::<String>("port-db").unwrap().to_string(),
+    };
+
+    let config = cache_server_shared::format_config::<cli::Config>(
+        config,
+        cli::Config {
+            port: matches.get_one::<String>("port").unwrap().to_string(),
+            db,
+        },
+    );
 
     cache_server_client::ping(config.db.port.to_string()).await;
 

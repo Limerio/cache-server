@@ -125,12 +125,11 @@ name = "cache-server"
 version = "0.1.0"
 dependencies = [
  "bytes",
+ "cache-server-shared",
  "clap",
  "serde",
  "serde_json",
- "serde_yaml",
  "tokio",
- "toml",
 ]
 
 [[package]]
@@ -138,12 +137,10 @@ name = "cache-server-api"
 version = "0.1.0"
 dependencies = [
  "cache-server-client",
+ "cache-server-shared",
  "clap",
  "rocket",
  "serde",
- "serde_json",
- "serde_yaml",
- "toml",
 ]
 
 [[package]]
@@ -160,6 +157,17 @@ name = "cache-server-client"
 version = "0.1.0"
 dependencies = [
  "tokio",
+]
+
+[[package]]
+name = "cache-server-shared"
+version = "0.1.0"
+dependencies = [
+ "clap",
+ "serde",
+ "serde_json",
+ "serde_yaml",
+ "toml",
 ]
 
 [[package]]

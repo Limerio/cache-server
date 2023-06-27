@@ -11,7 +11,11 @@ async fn main() {
     let db = Db::new();
     let config = matches.get_one::<String>("config");
 
-    let config = cli::format_config(config, matches.clone());
+    let default_config = cli::Config {
+        port: matches.get_one::<String>("port").unwrap().to_string(),
+    };
+
+    let config = cache_server_shared::format_config::<cli::Config>(config, default_config);
 
     let listener = TcpListener::bind(format!("0.0.0.0:{}", config.port))
         .await

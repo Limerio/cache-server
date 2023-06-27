@@ -5,5 +5,6 @@
     ".\\cache-server\\Cargo.toml",
     ".\\cache-server-client\\Cargo.toml",
     ".\\cache-server-api\\Cargo.toml",
+    ".\\cache-server-shared\\Cargo.toml"
   ],
 }
