@@ -19,6 +19,7 @@ pub fn cmds() -> Command {
         .subcommand(commands::flush::cmd())
         .subcommand(commands::rename::cmd())
         .arg(Arg::new("port").long("port").default_value("8080"))
+        .arg(Arg::new("config").long("config").short('c'))
 }
 
 #[derive(Deserialize)]
