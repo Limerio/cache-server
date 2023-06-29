@@ -4,6 +4,7 @@
     ".\\cache-server-cli\\Cargo.toml",
     ".\\cache-server\\Cargo.toml",
     ".\\cache-server-api\\Cargo.toml",
-    ".\\cache-server-shared\\Cargo.toml"
+    ".\\cache-server-shared\\Cargo.toml",
+    ".\\cache-server-app\\src-tauri\\Cargo.toml"
   ],
 }
