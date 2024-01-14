@@ -5,7 +5,8 @@ Hello everyone
 ## Why I do this project ?
 
 I want to present you a project of cache server like [redis](https://redis.io) or [memcached](https://memcached.org) with more externals features (I will present you in more details after) for my personal knowledge to understand rust and this core functionality through multiply projects (or crates 👀).
-I have already make projects in rust like a [file hasher](https://github.com/Limerio/file-hash) (cli), a [webscraper](https://github.com/Limerio/webscraper) or a [currency converter](https://github.com/Limerio/currency-converter) (cli) but there are small rather than this project.
+
+I have already make projects in rust like a [file hasher](https://github.com/Limerio/file-hash) (cli), a [github reposlist webscraper](https://github.com/Limerio/github-reposlist-webscraper) or a [currency converter](https://github.com/Limerio/currency-converter) (cli) but there are small rather than this project.
 
 ## What can this project contain ?
 
